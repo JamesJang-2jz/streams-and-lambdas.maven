@@ -21,7 +21,7 @@ public class StreamFilter {
      * No arg constructor
      */ //TODO - construct person stream of 100 person objects; startingCharacter is a random capital letter
     public StreamFilter() {
-        this(new PersonFactory().createPersonStream(100), (char) ('A' + new Random().nextInt(26)));
+        this(new PersonFactory().createPersonStream(100), (char) (Math.random() * (90-65) + 65));
     }
 
     /**
@@ -57,7 +57,7 @@ public class StreamFilter {
      */ //TODO
     public List<Person> toListMultiLine() {
         return personStream.filter(person -> person.getName()
-                .startsWith(startingCharacter))
+                .startsWith(this.startingCharacter))
                 .collect(Collectors.toList());
     }
 
@@ -66,7 +66,8 @@ public class StreamFilter {
      * @return a list of person objects whose name starts with `this.startingCharacter`
      */ //TODO
     public List<Person> toListOneLine() {
-        return personStream.filter(person -> person.getName().startsWith(startingCharacter)).collect(Collectors.toList());
+        return personStream.filter(person -> person.getName()
+                .startsWith(this.startingCharacter)).collect(Collectors.toList());
     }
 
     /**
@@ -74,7 +75,7 @@ public class StreamFilter {
      * @return an array of person object whose name starts with `this.startingCharacter`
      */ //TODO
     public Person[] toArrayOneLine() {
-        return null;
+        return toListOneLine().toArray(Person[]::new);
     }
 
 
@@ -83,7 +84,7 @@ public class StreamFilter {
      * @return an array of person object whose name starts with `this.startingCharacter`
      */ //TODO
     public Person[] toArrayMultiLine() {
-        return null;
+        return toListMultiLine().toArray(Person[]::new);
     }
 
 }
