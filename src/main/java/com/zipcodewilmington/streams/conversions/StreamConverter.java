@@ -35,6 +35,6 @@ public final class StreamConverter extends PersonConversionAgent<Stream<Person>>
 
     // TODO
     public Person[] toArray() {
-        return personList.toArray(Person[]::new);
+        return toList().toArray(new Person[0]);
     }
 }
